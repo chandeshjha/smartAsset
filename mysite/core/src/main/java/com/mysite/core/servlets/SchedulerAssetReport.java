@@ -139,6 +139,7 @@ public class SchedulerAssetReport<GenerateReportServlet> implements Runnable {
 			Session session = resolver.adaptTo(Session.class);
 			for (int i = 0; i < jobIds.length; i++) {
 				Node node = session.getNode("/var/dam/reports/" + jobIds[i]);
+				logger.info("inside the servlet ", jobIds[i]);
 				if (node != null) {
 					String jobTitle = node.getProperty("jobTitle").getString()+"-ScheduledReport";
 					String type = node.getProperty("reportType").getString();
