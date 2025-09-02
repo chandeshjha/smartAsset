@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured">
+    <assetreport
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+        margin="{Boolean}true">
+        <items jcr:primaryType="nt:unstructured">
+            <column1
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <thumbnail
+                        granite:class="share-resource-image grid"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dam/gui/coral/components/admin/reports/createreportwizard/thumbnail"
+                        class="configure-column-step-thumbnail"
+                        variant="asset">
+                        <actions jcr:primaryType="nt:unstructured">
+                            <upload
+                                granite:id="thumbnail-upload-button"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/fileupload"
+                                autoStart="{Boolean}false"
+                                mimeTypes="[image/png,image/jpeg,image/gif]"
+                                multiple="{Boolean}false"
+                                name="coverImage"
+                                renderReadOnly="{Boolean}true"
+                                sizeLimit="100000000"
+                                text="Change Thumbnail"
+                                uploadUrl="will_be_replaced"
+                                useHTML5="{Boolean}false"/>
+                        </actions>
+                    </thumbnail>
+                </items>
+            </column1>
+            <column2
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <field1
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Title and Description"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <name
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Title"
+                                name="jobTitle"
+                                required="{Boolean}true"/>
+                            <description
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                fieldLabel="Description"
+                                name="jobDescription"
+                                rows="4"/>
+                        </items>
+                    </field1>
+                    <field2
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Folder Path"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <pathbrowser
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                emptyText="/content/dam"
+                                fieldLabel="Select Folder Path"
+                                filter="folder"
+                                name="path"
+                                predicate="folder"
+                                rootPath="/content/dam"/>
+                        </items>
+                        <granite:rendercondition
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/gui/coral/components/commons/renderconditions/isnotlinksharereport"/>
+                    </field2>
+                    <field3
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Adjust Date"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <startdate
+                                granite:rel="reports-lowerbound-date-box datepicker"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                displayedFormat="YYYY-MM-DD HH:mm"
+                                emptyText="Start Date"
+                                name="0_daterange.lowerBound"
+                                type="datetime">
+                                <granite:data
+                                    jcr:primaryType="nt:unstructured"
+                                    metaType="datepicker"
+                                    typeHint="Date"/>
+                            </startdate>
+                            <enddate
+                                granite:rel="reports-upperbound-date-box datepicker"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                displayedFormat="YYYY-MM-DD HH:mm"
+                                emptyText="End Date"
+                                name="0_daterange.upperBound"
+                                type="datetime">
+                                <granite:data
+                                    jcr:primaryType="nt:unstructured"
+                                    metaType="datepicker"
+                                    typeHint="Date"/>
+                            </enddate>
+                            <lowerOperation
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="0_daterange.lowerOperation"
+                                type="hidden"
+                                value=">="/>
+                            <upperOperation
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="0_daterange.upperOperation"
+                                type="hidden"
+                                value="&lt;="/>
+                            <daterangeprop
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="0_daterange.property"
+                                type="hidden"
+                                value="jcr:created"/>
+                            <other--predicates
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <general-predicates
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="dam/gui/coral/components/admin/reports/createreportwizard/predicatecontainer"
+                                        predicategroup="general-predicates">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <type
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                name="type"
+                                                type="hidden"
+                                                value="dam:Asset"/>
+                                        </items>
+                                    </general-predicates>
+                                    <download-predicates
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="dam/gui/coral/components/admin/reports/createreportwizard/predicatecontainer"
+                                        predicategroup="download-predicates">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <verb
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                name="1_property"
+                                                type="hidden"
+                                                value="verb"/>
+                                            <verbvalue
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                name="1_property.value"
+                                                type="hidden"
+                                                value="DOWNLOADED"/>
+                                        </items>
+                                    </download-predicates>
+                                    <guesstotal
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                        name="p.guessTotal"
+                                        type="hidden"
+                                        value="10000"/>
+                                    <limit
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                        name="p.limit"
+                                        type="hidden"
+                                        value="10000"/>
+                                    <orderby
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                        name="orderby"
+                                        type="hidden"
+                                        value="jcr:created"/>
+                                    <orderbysort
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                        name="orderby.sort"
+                                        type="hidden"
+                                        value="desc"/>
+                                    <mainasset
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                        name="mainasset"
+                                        type="hidden"
+                                        value="true"/>
+                                </items>
+                            </other--predicates>
+                        </items>
+                    </field3>
+                    <excludeAssets
+                        granite:id="excludeAssetsContainer"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Exclude Assets"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <contentfragment
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                name="excludeassetspredicate"
+                                text="Content Fragments"
+                                value="contentFragment"/>
+                        </items>
+                    </excludeAssets>
+                    <field4
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Schedule Report"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <radiogroup
+                                granite:class="schedule-report-options-radiogroup"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+                                name="reportSchedule"
+                                required="{Boolean}true"
+                                vertical="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <scheduleNow
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Now"
+                                        checked="{Boolean}true"
+                                        text="Now"
+                                        value="now"/>
+                                    <scheduleLater
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Later"
+                                        text="Later"
+                                        value="later"/>
+                                </items>
+                            </radiogroup>
+                            <activationDate
+                                granite:rel="schedule-report-datepicker"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                disabled="{Boolean}true"
+                                displayedFormat="&#x9;&#xa;YYYY-MM-DD HH:mm"
+                                displayTimezoneMessage="{Boolean}true"
+                                emptyText="Select Date &amp; Time"
+                                minDate="today"
+                                name="scheduleDate"
+                                required="{Boolean}true"
+                                type="datetime"/>
+                            <recurrence
+                                granite:class="recurrence-report-check-select"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                defaultChecked="{Boolean}false"
+                                name="jobRecurrence"
+                                text="Want to Schedule the report?"
+                                value="jobRecurrence"/>
+                            <recurrenceSelect
+                                granite:class="recurrence-report-options-select"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                disabled="{Boolean}true"
+                                name="recurrenceSelect"
+                                required="{Boolean}true"
+                                vertical="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <halfday
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Half Day"
+                                        checked="{Boolean}true"
+                                        text="Half Day"
+                                        value="0 */12 * * *"/>
+                                    <daily
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Daily"
+                                        text="Daily"
+                                        value="0 0 * * *"/>
+                                    <monthly
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Monthly"
+                                        text="Monthly"
+                                        value="0 0 1 * *"/>
+                                </items>
+                            </recurrenceSelect>
+                        </items>
+                    </field4>
+                </items>
+            </column2>
+        </items>
+    </assetreport>
+    <configurecolumns
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+        margin="{Boolean}true">
+        <items jcr:primaryType="nt:unstructured">
+            <column1
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <thumbnail
+                        granite:class="share-resource-image grid"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="dam/gui/coral/components/admin/reports/createreportwizard/thumbnail"
+                        class="configure-column-step-thumbnail"
+                        variant="asset"/>
+                </items>
+            </column1>
+            <column2
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <heading
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Default Columns"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"/>
+                    <title
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        checked="{Boolean}true"
+                        name="column"
+                        text="Title"
+                        value="title"/>
+                    <path
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        checked="{Boolean}true"
+                        name="column"
+                        text="Path"
+                        value="path"/>
+                    <type
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        checked="{Boolean}true"
+                        name="column"
+                        text="Type"
+                        value="type"/>
+                    <size
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        checked="{Boolean}true"
+                        name="column"
+                        text="Size"
+                        value="size"/>
+                    <added
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        name="column"
+                        text="Added"
+                        value="added"/>
+                    <modified
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        name="column"
+                        text="Modified"
+                        value="modified"/>
+                    <expires
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        name="column"
+                        text="Expires"
+                        value="expires"/>
+                    <published
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        name="column"
+                        text="Published"
+                        value="published"/>
+                    <downloadcount
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        name="column"
+                        text="Download Count"
+                        value="frequency"/>
+                    <brandportalpublished
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Test"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                        name="column"
+                        text="Brand Portal Published"
+                        value="brand portal published"/>
+                </items>
+            </column2>
+            <column3
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <field1
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Custom Columns"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                        <items jcr:primaryType="nt:unstructured">
+                            <customcolumn
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Custom Columns"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <name
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            emptyText="Column Name"
+                                            name="column"
+                                            required="{Boolean}true"/>
+                                        <value
+                                            granite:class="property-picker-field do-not-prepend-prefix"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            emptyText="Property to map"
+                                            name="customproperties"
+                                            pickerSrc="/mnt/overlay/dam/gui/content/commons/propertypicker/picker.html?_charset_=utf-8&amp;root=%2F"
+                                            required="{Boolean}true"
+                                            suggestionSrc="/mnt/overlay/dam/gui/content/commons/propertypicker/suggestion.html?_charset_=utf-8&amp;root=%2F{&amp;query}"/>
+                                    </items>
+                                </field>
+                            </customcolumn>
+                        </items>
+                    </field1>
+                    <filter
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                        fieldLabel="Custom Filter"
+                        name="customFilter"/>
+                </items>
+            </column3>
+        </items>
+    </configurecolumns>
+</jcr:root>
