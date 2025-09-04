@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Assets | Archival"
+        sling:resourceType="granite/ui/components/shell/collectionpage"
+        consoleId="asset-unreferenced"
+        contentPath="${requestPathInfo.suffix}"
+        currentView="${state[&quot;components.shell.collectionpage.layoutId&quot;].string}"
+        modeGroup="cq-asset-list"
+        pageURITemplate="/apps/nikitagargprogram/components/utility/orphaned-assets.html{+id}"
+        targetCollection=".cq-asset-list">
+        <head jcr:primaryType="nt:unstructured">
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+                categories="[granite.ui.coral.foundation,coral-ui3,my-tools.base]"/>
+        </head>
+        <title
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Orphaned Assets"
+            sling:resourceType="granite/ui/components/shell/title"/>
+        <actions jcr:primaryType="nt:unstructured">
+            <secondary jcr:primaryType="nt:unstructured"/>
+            <selection jcr:primaryType="nt:unstructured">
+                <expire
+                    granite:class="cq-asset-expire-activator"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="foundation.link"
+                    activeSelectionCount="single"
+                    icon="assetsExpired"
+                    target=".cq-asset-list"
+                    text="Set Expiration"
+                    variant="actionBar">
+                    <data
+                        jcr:primaryType="nt:unstructured"
+                        href.uritemplate="/mnt/overlay/nikitagargprogram/components/utility/orphaned-assets/details.html{item*}"/>
+                </expire>
+                <expireAllAssets
+                    granite:rel="expire-asset-action-activator"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="expire.asset.action"
+                    activeSelectionCount="multiple"
+                    icon="assetsExpired"
+                    target=".cq-asset-list"
+                    text="Expire Today"
+                    variant="actionBar"/>
+                <archive
+                    granite:rel="archive-asset-action-activator"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="archive.asset.action"
+                    activeSelectionCount="multiple"
+                    icon="archive"
+                    target=".cq-asset-list"
+                    text="Archive"
+                    variant="actionBar"/>
+                <properties
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="foundation.link"
+                    activeSelectionCount="single"
+                    icon="infoCircle"
+                    target=".cq-asset-list"
+                    text="Properties"
+                    variant="actionBar">
+                    <data
+                        jcr:primaryType="nt:unstructured"
+                        href.uritemplate="/mnt/overlay/dam/gui/content/assets/metadataeditor.external.html?_charset_=utf-8&amp;item={item*}"/>
+                </properties>
+            </selection>
+        </actions>
+        <views jcr:primaryType="nt:unstructured">
+            <list
+                granite:rel="cq-asset-list"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/table"
+                layoutId="table"
+                limit="{Decimal}20"
+                selectionCount="multiple"
+                selectionMode="row"
+                src="/mnt/overlay/nikitagargprogram/components/utility/orphaned-assets/jcr:content/views/list{.offset,limit}.html{+id}">
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    foundation-mode-group="cq-asset-list"/>
+                <columns jcr:primaryType="nt:unstructured">
+                    <select
+                        jcr:primaryType="nt:unstructured"
+                        select="{Boolean}true"/>
+                    <title
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Title"
+                        sortable="{Boolean}true"
+                        sortType="alphanumeric"/>
+                    <path
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Path"
+                        sortable="{Boolean}true"
+                        sortType="alphanumeric"/>
+                    <expirationDate
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Expiration Date"
+                        sortable="{Boolean}true"
+                        sortType="date"/>
+                </columns>
+                <datasource
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="nikitagargprogram/components/utility/assetlistdatasource"
+                    assetPath="/content/dam/nikitagargprogram"
+                    itemResourceType="nikitagargprogram/components/utility/row"
+                    limit="${empty requestPathInfo.selectors[1] ? &quot;41&quot; : requestPathInfo.selectors[1] + 1}"
+                    offset="${requestPathInfo.selectors[0]}"
+                    path="/content/dam"/>
+            </list>
+        </views>
+        <rails jcr:primaryType="nt:unstructured">
+            <search
+                granite:class="cq-rail-components-search"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Search"
+                sling:resourceType="granite/ui/components/coral/foundation/panel/railpanel">
+                <items jcr:primaryType="nt:unstructured">
+                    <form
+                        granite:id="cq-asset-unreferenced-search-form"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/shell/search/form"
+                        action="/mnt/overlay/nikitagargprogram/components/utility/orphaned-assets.html"
+                        consoleId="cq-asset-unreferenced-search-form"
+                        modeGroup="cq-asset-list"
+                        targetCollection="#cq-asset-list-search-result">
+                        <successresponse
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/responses/reload"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <type
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                name="type"
+                                value="dam:Asset"/>
+                            <assetPath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                emptyText="Please input a asset folder path"
+                                fieldLabel="Path"
+                                filter="folder"
+                                name="assetPath"
+                                required="{Boolean}true"
+                                rootPath="/content/dam"/>
+                            <submit
+                                granite:id="btnAssetFetch"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/button"
+                                text="submit"
+                                type="submit"/>
+                        </items>
+                        <result jcr:primaryType="nt:unstructured">
+                            <views jcr:primaryType="nt:unstructured">
+                                <list
+                                    granite:id="cq-asset-list-search-result"
+                                    granite:rel="cq-asset-list"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/table"
+                                    layoutId="list"
+                                    limit="{Long}40"
+                                    modeGroup="cq-asset-list"
+                                    size="${empty requestPathInfo.selectors[1] ? &quot;40&quot; : requestPathInfo.selectors[1]}"
+                                    src="/mnt/overlay/wcm/core/content/sites/components/_jcr_content/rails/search/items/form/result/views/list{.offset,limit}.html?${querystring}"
+                                    stateId="components.shell.collectionpage">
+                                    <columns jcr:primaryType="nt:unstructured">
+                                        <select
+                                            jcr:primaryType="nt:unstructured"
+                                            select="{Boolean}true"/>
+                                        <path
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Path"/>
+                                        <title
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Title"/>
+                                    </columns>
+                                    <datasource
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="nikitagargprogram/components/utility/assetlistdatasource"
+                                        assetPath="${param[&quot;assetPath&quot;]}"
+                                        itemResourceType="nikitagargprogram/components/utility/row"
+                                        limit="${empty requestPathInfo.selectors[1] ? &quot;41&quot; : requestPathInfo.selectors[1] + 1}"
+                                        offset="${empty requestPathInfo.selectors[1] ? &quot;0&quot; : requestPathInfo.selectors[1]}"/>
+                                </list>
+                            </views>
+                        </result>
+                    </form>
+                </items>
+            </search>
+        </rails>
+    </jcr:content>
+    <details/>
+</jcr:root>
