@@ -37,7 +37,7 @@ import java.util.*;
 
 @Component(service = Servlet.class, property = {
         Constants.SERVICE_DESCRIPTION + "= Asset List for Expiration",
-        "sling.servlet.resourceTypes=" + "nikitagargprogram/components/utility/assetlistdatasource"
+        "sling.servlet.resourceTypes=" + "mysite/components/utility/assetlistdatasource"
 })
 public class AssetListDatasource extends SlingSafeMethodsServlet {
 

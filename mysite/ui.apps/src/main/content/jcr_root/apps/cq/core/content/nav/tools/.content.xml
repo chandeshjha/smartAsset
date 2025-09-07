@@ -10,7 +10,7 @@
             jcr:description="Find &amp; Archive Unreferenced Assets"
             jcr:primaryType="nt:unstructured"
             jcr:title="Orphaned Asset Manager"
-            href="/apps/nikitagargprogram/components/utility/orphaned-assets.html"
+            href="/apps/mysite/components/utility/orphaned-assets.html"
             icon="archive"
             id="custom-asset-archive"
             target="_blank"/>

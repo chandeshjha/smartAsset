@@ -29,7 +29,7 @@ import com.google.gson.JsonObject;
 		service = { Servlet.class },
 		property = {
         "sling.servlet.methods=" + HttpConstants.METHOD_GET,
-        "sling.servlet.resourceTypes=" + "nikitagargprogram/components/utility/orphaned-assets/_jcr_content/rails/search/items",
+        "sling.servlet.resourceTypes=" + "mysite/components/utility/orphaned-assets/_jcr_content/rails/search/items",
         "sling.servlet.selectors=" + "result",
         "sling.servlet.extensions=" + "html"
 

@@ -22,7 +22,7 @@ import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 
 @Component(service = Servlet.class)
-@SlingServletResourceTypes(resourceTypes = "/apps/nikitagargprogram/expireSelectedAssets", methods = HttpConstants.METHOD_POST, extensions = "json", selectors = "archive")
+@SlingServletResourceTypes(resourceTypes = "/apps/mysite/expireSelectedAssets", methods = HttpConstants.METHOD_POST, extensions = "json", selectors = "archive")
 @ServiceDescription("Archive Asset servlet")
 public class ArchiveAssets extends SlingAllMethodsServlet {
 

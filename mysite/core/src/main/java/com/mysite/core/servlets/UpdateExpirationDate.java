@@ -22,7 +22,7 @@ import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 
 @Component(service = Servlet.class)
 @SlingServletResourceTypes(
-    resourceTypes = "/apps/nikitagargprogram/expireSelectedAssets",
+    resourceTypes = "/apps/mysite/expireSelectedAssets",
      methods = HttpConstants.METHOD_POST, 
      extensions = "json",
       selectors = "update-expiration")

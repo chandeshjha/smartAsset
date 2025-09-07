@@ -10,7 +10,7 @@ $(document).ready(function () {
   function callServlet(jsonValue) {
       console.log("JSON Value" + jsonValue);
     $.ajax({
-      url: "/content/nikitagargprogram/us/_jcr_content/delete.delete-pages.json",
+      url: "/content/mysite/us/_jcr_content/delete.delete-pages.json",
       method: "POST",
       headers: { 'myParam' : jsonValue },
       processData: false,

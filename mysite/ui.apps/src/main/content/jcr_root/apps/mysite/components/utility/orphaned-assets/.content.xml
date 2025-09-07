@@ -9,7 +9,7 @@
         contentPath="${requestPathInfo.suffix}"
         currentView="${state[&quot;components.shell.collectionpage.layoutId&quot;].string}"
         modeGroup="cq-asset-list"
-        pageURITemplate="/apps/nikitagargprogram/components/utility/orphaned-assets.html{+id}"
+        pageURITemplate="/apps/mysite/components/utility/orphaned-assets.html{+id}"
         targetCollection=".cq-asset-list">
         <head jcr:primaryType="nt:unstructured">
             <clientlibs
@@ -36,7 +36,7 @@
                     variant="actionBar">
                     <data
                         jcr:primaryType="nt:unstructured"
-                        href.uritemplate="/mnt/overlay/nikitagargprogram/components/utility/orphaned-assets/details.html{item*}"/>
+                        href.uritemplate="/mnt/overlay/mysite/components/utility/orphaned-assets/details.html{item*}"/>
                 </expire>
                 <expireAllAssets
                     granite:rel="expire-asset-action-activator"
@@ -82,7 +82,7 @@
                 limit="{Decimal}20"
                 selectionCount="multiple"
                 selectionMode="row"
-                src="/mnt/overlay/nikitagargprogram/components/utility/orphaned-assets/jcr:content/views/list{.offset,limit}.html{+id}">
+                src="/mnt/overlay/mysite/components/utility/orphaned-assets/jcr:content/views/list{.offset,limit}.html{+id}">
                 <granite:data
                     jcr:primaryType="nt:unstructured"
                     foundation-mode-group="cq-asset-list"/>
@@ -108,9 +108,9 @@
                 </columns>
                 <datasource
                     jcr:primaryType="nt:unstructured"
-                    sling:resourceType="nikitagargprogram/components/utility/assetlistdatasource"
-                    assetPath="/content/dam/nikitagargprogram"
-                    itemResourceType="nikitagargprogram/components/utility/row"
+                    sling:resourceType="mysite/components/utility/assetlistdatasource"
+                    assetPath="/content/dam/mysite"
+                    itemResourceType="mysite/components/utility/row"
                     limit="${empty requestPathInfo.selectors[1] ? &quot;41&quot; : requestPathInfo.selectors[1] + 1}"
                     offset="${requestPathInfo.selectors[0]}"
                     path="/content/dam"/>
@@ -127,7 +127,7 @@
                         granite:id="cq-asset-unreferenced-search-form"
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/shell/search/form"
-                        action="/mnt/overlay/nikitagargprogram/components/utility/orphaned-assets.html"
+                        action="/mnt/overlay/mysite/components/utility/orphaned-assets.html"
                         consoleId="cq-asset-unreferenced-search-form"
                         modeGroup="cq-asset-list"
                         targetCollection="#cq-asset-list-search-result">
@@ -182,9 +182,9 @@
                                     </columns>
                                     <datasource
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="nikitagargprogram/components/utility/assetlistdatasource"
+                                        sling:resourceType="mysite/components/utility/assetlistdatasource"
                                         assetPath="${param[&quot;assetPath&quot;]}"
-                                        itemResourceType="nikitagargprogram/components/utility/row"
+                                        itemResourceType="mysite/components/utility/row"
                                         limit="${empty requestPathInfo.selectors[1] ? &quot;41&quot; : requestPathInfo.selectors[1] + 1}"
                                         offset="${empty requestPathInfo.selectors[1] ? &quot;0&quot; : requestPathInfo.selectors[1]}"/>
                                 </list>

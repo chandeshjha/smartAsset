@@ -26,7 +26,7 @@
         ui.wait();
 
        $.ajax({
-            url: Granite.HTTP.externalize("/content/nikitagargprogram/us/_jcr_content/expire.update-expiration.json"),
+            url: Granite.HTTP.externalize("/content/mysite/us/_jcr_content/expire.update-expiration.json"),
             method: "POST",
             data: {
                 "_charset_": "utf-8",
