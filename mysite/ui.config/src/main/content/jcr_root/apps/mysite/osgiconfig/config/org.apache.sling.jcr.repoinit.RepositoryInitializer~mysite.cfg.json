@@ -2,6 +2,10 @@
     "scripts": [
         "create path (sling:OrderedFolder) /content/dam/mysite",
         "create path (nt:unstructured) /content/dam/mysite/jcr:content",
-        "set properties on /content/dam/mysite/jcr:content\n  set cq:conf{String} to /conf/mysite\n  set jcr:title{String} to \"My Site 6.5\"\nend"
+        "set properties on /content/dam/mysite/jcr:content\n  set cq:conf{String} to /conf/mysite\n  set jcr:title{String} to \"My Site 6.5\"\nend",
+        "create service user writeruser \r\nset ACL on /content \r\n allow jcr:read for writeruser \r\nend",
+        "set ACL on /content \r\nallow jcr:all for writeruser \r\nend",
+        "set ACL on /var \r\nallow jcr:all for writeruser \r\nend",
+        "set ACL on /conf \r\nallow jcr:all for writeruser \r\nend"
     ]
 }
