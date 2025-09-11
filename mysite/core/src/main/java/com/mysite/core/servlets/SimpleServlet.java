@@ -162,6 +162,6 @@ public class SimpleServlet<GenerateReportServlet> extends SlingAllMethodsServlet
 			e.printStackTrace();
 		}
         
-        resp.getWriter().write("Report generation triggered for jobId=" + jobIds);
+        resp.getWriter().write("Report xyz generation triggered for jobId=" + jobIds);
     }
 }

@@ -1,0 +1,15 @@
+<sly data-sly-use.model="com.mysite.core.models.RowModel"></sly>
+<sly
+  data-sly-test.concatenated="${'{0}{1}' @ format=['/mnt/overlay/mysite/components/utility/orphaned-assets/details.html', model.path]}">
+</sly>
+<tr is="coral-table-row" class="foundation-collection-item foundation-collection-navigator"
+  data-foundation-collection-navigator-href="${concatenated}"
+   data-foundation-collection-item-id="${model.path}" 
+   data-foundation-collection-item-title="${model.title}">
+  <td is="coral-table-cell">
+    <coral-checkbox coral-table-rowselect></coral-checkbox>
+  </td>
+  <td is="coral-table-cell"  >${model.title}</td>
+  <td is="coral-table-cell">${model.path}</td>
+  <td is="coral-table-cell">${model.assetExpiration}</td>
+</tr>

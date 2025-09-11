@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="AEM Asset Expiration"
+        sling:resourceType="granite/ui/components/shell/propertiespage"
+        backHref="${empty param.backHref ? (empty header.Referer ? granite:concat(&quot;/apps/mysite/components/utility/orphaned-assets.html&quot;, granite:encodeURIPath(granite:relativeParent(param.item, 1))) : header.Referer) : param.backHref}"
+        consoleId="cq-asset-expiration-properties"
+        formId="cq-expiration-properties-form"
+        simpleSave="{Boolean}false">
+        <head jcr:primaryType="nt:unstructured">
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+                categories="[my-tools.base]"/>
+        </head>
+        <title
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Update Expiration "
+            sling:resourceType="granite/ui/components/shell/title"/>
+        <actions jcr:primaryType="nt:unstructured"/>
+        <list
+            granite:rel="cq-asset-list"
+            jcr:primaryType="nt:unstructured"
+            jcr:title="List View"
+            sling:resourceType="granite/ui/components/coral/foundation/table"
+            icon="viewList"
+            limit="{Long}40"
+            selectionCount="multiple"
+            selectionMode="row"
+            src="/mnt/overlay/mysite/components/utility/orphaned-assets/jcr:content/views/list{.offset,limit}.html">
+            <columns jcr:primaryType="nt:unstructured">
+                <select
+                    jcr:primaryType="nt:unstructured"
+                    select="{Boolean}true"/>
+                <path
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Path"
+                    sortable="{Boolean}true"
+                    sortType="alphanumeric"/>
+                <title
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Title"
+                    sortable="{Boolean}true"
+                    sortType="alphanumeric"/>
+                <expirationDate
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Expiration Date"/>
+            </columns>
+            <datasource
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="mysite/components/utility/assetlistdatasource"
+                assetPath="/content/dam/mysite"
+                itemResourceType="mysite/components/utility/row"
+                limit="${empty requestPathInfo.selectors[1] ? &quot;41&quot; : requestPathInfo.selectors[1] + 1}"
+                offset="${requestPathInfo.selectors[0]}"
+                path="/content/dam"/>
+        </list>
+        <content
+            granite:id="cq-expiration-properties-form"
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Permissions"
+            sling:resourceType="granite/ui/components/coral/foundation/form"
+            action="${requestPathInfo.suffix}.expire.json"
+            dataPath="${requestPathInfo.suffix}"
+            foundationForm="{Boolean}true"
+            method="post"
+            style="vertical">
+            <granite:data
+                jcr:primaryType="nt:unstructured"
+                content-path="${granite:concat(granite:url(requestPathInfo.suffix), granite:encodeURIPath('/jcr:content/metadata'))}&#xa;"/>
+            <items jcr:primaryType="nt:unstructured">
+                <propertiesContainer
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                    <items jcr:primaryType="nt:unstructured">
+                        <propColumn
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                            <items jcr:primaryType="nt:unstructured">
+                                <assetPath
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Asset Path"
+                                    readOnly="{Boolean}true"
+                                    value="${requestPathInfo.suffix}"/>
+                                <expires
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                    displayedFormat="MM-DD-YYYY HH:mm"
+                                    fieldLabel="Expires (MM-DD-YYYY HH:mm)"
+                                    minDate="today"
+                                    name="./jcr:content/metadata/prism:expirationDate"
+                                    type="datetime"/>
+                            </items>
+                        </propColumn>
+                    </items>
+                </propertiesContainer>
+            </items>
+        </content>
+    </jcr:content>
+</jcr:root>

@@ -1,0 +1,4 @@
+#base=.
+delete-pages.js
+expire-asset.js
+archive-asset.js
