@@ -1,0 +1,6 @@
+{
+    "enabled": "true",
+    "scheduler_expression": "0 */5 * * * ?",
+    "scheduler_concurrent": "false",
+    "jobIds": ["2a26f600-1f1f-43dd-8b67-82a5d689c1a1"]
+}
